@@ -1,0 +1,13 @@
+![image](https://user-images.githubusercontent.com/87894596/230036599-6e218244-fd82-41c5-8c42-8fc79380a7a6.png)
+- Classification Task: Time series classification sử dụng supervised machine learning thuật toán để phân tích và học loại time series data đã được gán nhãn theo các class (một chuỗi thông tin theo thời gian sẽ có một class nhất định đại diện ví dụ hình 4). Sau đó model này sẽ được dùng để phân loại các class này trong dataset mới. Điều này rất quan trọng trong nhiều môi trường làm việc nơi mà có thể cần phân tích dữ liệu cảm biến hoặc dữ liệu tài chính để hỗ trợ quyết định kinh doanh. Độ chính xác của phân loại là rất quan trọng trong những trường hợp này, vì vậy phải đảm bảo rằng việc phân loại time series càng chính xác càng tốt. Tóm lại mục tiêu tổng thể là tạo ra một model giúp xác định a sample (a time series) thuộc loại class nào trong các class đã được định nghĩa trước đó và model này đã được huấn luyện trên một time series dataset đã được gán nhãn.
+- Trong project này: thực hiện time series classification task với tập Wafer data giúp phân loại wafer là normal hoặc abnorm dựa vào chuỗi thông tin từ sensor.
+- Thông tin tổng quan:
+  - Wafer dataset: Trong điện tử, wafer là một lát bán dẫn mỏng được sử dụng để sản xuất pin mặt trời. Tấm wafer đóng vai trò là chất nền cho các microelectronic devices được tích hợp bên trong và trên tấm wafer. Wafer dataset với mỗi sample chứa các phép đo được ghi lại bởi một sensor trong quá trình xử lý một tấm wafer với độ dài tín hiệu là 152 (length) được gán nhãn thuộc 2 class normal và abnormal (wafer có thể sử dụng và không sử dụng được). Train dataset gồm có 6164 samples và test dataset gồm có 1000 samples.
+  
+  ![image](https://user-images.githubusercontent.com/87894596/230037156-ee7c97aa-6fa6-4f57-a8fd-bf2920425fc3.png)
+  - Wafer classification: Mỗi một sample là vetor cố độ dài là 152 giá trị sẽ đi kèm với 1 class tương ứng (normal hoặc abnormal) (Hình 7) Nhiệm vụ của các bạn là load data và xây dựng một model có thể nhận thông tin là tín hiệu với 152 giá trị của sensor để phân loại wafer thuộc class nào.
+  
+  ![image](https://user-images.githubusercontent.com/87894596/230037102-a651a33d-40b9-4c98-abf9-d9ed10613841.png)
+  - Wafer classification architecture: Xây dựng model classification như (Hình 8). Mô tả này không gồm chiều của batchsize (None), đầu tiên input sẽ có shape là (152,1) đi qua LSTM layer có 32 units và tiếp tục đi vào LSTM thứ hai có 16 units trước khi đi qua dense có 2 units để phân loại normal and abnormal.
+  
+  ![image](https://user-images.githubusercontent.com/87894596/230037553-167d04dc-bfe5-46b6-8c04-dc36a11839ad.png)
